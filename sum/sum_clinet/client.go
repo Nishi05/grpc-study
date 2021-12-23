@@ -22,7 +22,8 @@ func main() {
 	c := sumpb.NewSumServiceClient(cc)
 	// doUnary(c)
 	// doServerStreaming(c)
-	doClientStreaming(c)
+	// doClientStreaming(c)
+	doBiDiStreaming(c)
 }
 
 func doUnary(c sumpb.SumServiceClient) {
@@ -98,4 +99,40 @@ func doClientStreaming(c sumpb.SumServiceClient) {
 	}
 	fmt.Printf("ComputeAverage: %v\n", res)
 
+}
+
+func doBiDiStreaming(c sumpb.SumServiceClient) {
+	fmt.Println("Starting to do a Client Streaming RPC...")
+	stream, err := c.FindMaximum(context.Background())
+	if err != nil {
+		log.Fatalf("error while calling FindMaximum RPC: %v", err)
+	}
+	requests := []int32{1, 5, 3, 6, 2, 20}
+
+	waitc := make(chan struct{})
+	go func() {
+		for _, req := range requests {
+			fmt.Printf("Sending number: %v\n", req)
+			stream.Send(&sumpb.FindMaximumRequest{
+				Num: req,
+			})
+			time.Sleep(1000 * time.Millisecond)
+		}
+		stream.CloseSend()
+	}()
+	go func() {
+		for {
+			res, err := stream.Recv()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				log.Fatalf("Error while receiving: %v\n", err)
+				break
+			}
+			fmt.Printf("Received: %v\n", res.GetMaximum())
+		}
+		close(waitc)
+	}()
+	<-waitc
 }

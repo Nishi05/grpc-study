@@ -63,6 +63,32 @@ func (*server) ComputeAverage(stream sumpb.SumService_ComputeAverageServer) erro
 
 }
 
+func (*server) FindMaximum(stream sumpb.SumService_FindMaximumServer) error {
+	fmt.Printf("FindMaximum function was invoked with a streaming request\n")
+	maximum := int32(0)
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+		if err != nil {
+			fmt.Printf("Error while reading client streaming %v", err)
+			return err
+		}
+		result := req.GetNum()
+		if result > maximum {
+			sendErr := stream.Send(&sumpb.FindMaximumResponse{
+				Maximum: result,
+			})
+			if sendErr != nil {
+				fmt.Printf("Error while sending data to client %v", err)
+				return err
+			}
+			maximum = result
+		}
+
+	}
+}
 func main() {
 	fmt.Println("Hello world")
 	lis, err := net.Listen("tcp", "0.0.0.0:50051")
