@@ -6,6 +6,7 @@ import (
 	"grpc-study/sum/sumpb"
 	"io"
 	"log"
+	"time"
 
 	"google.golang.org/grpc"
 )
@@ -20,7 +21,8 @@ func main() {
 
 	c := sumpb.NewSumServiceClient(cc)
 	// doUnary(c)
-	doServerStreaming(c)
+	// doServerStreaming(c)
+	doClientStreaming(c)
 }
 
 func doUnary(c sumpb.SumServiceClient) {
@@ -61,4 +63,39 @@ func doServerStreaming(c sumpb.SumServiceClient) {
 		}
 		log.Printf("Response from PrimeNumberManyTimes: %v", msg.GetResult())
 	}
+}
+
+func doClientStreaming(c sumpb.SumServiceClient) {
+	fmt.Println("Starting to do a Client Streaming RPC...")
+	stream, err := c.ComputeAverage(context.Background())
+	requests := []*sumpb.ComputeAverageRequest{
+		&sumpb.ComputeAverageRequest{
+			Num: 1,
+		},
+		&sumpb.ComputeAverageRequest{
+			Num: 2,
+		},
+		&sumpb.ComputeAverageRequest{
+			Num: 3,
+		},
+		&sumpb.ComputeAverageRequest{
+			Num: 4,
+		},
+	}
+	if err != nil {
+		log.Fatalf("error while calling ComputeAverage RPC: %v", err)
+	}
+	for _, req := range requests {
+		fmt.Printf("Sending req: %v\n", req)
+		stream.Send(req)
+		time.Sleep(1000 * time.Millisecond)
+	}
+
+	res, err := stream.CloseAndRecv()
+
+	if err != nil {
+		fmt.Printf("error while receiving response from ComputeAverage: %v", err)
+	}
+	fmt.Printf("ComputeAverage: %v\n", res)
+
 }

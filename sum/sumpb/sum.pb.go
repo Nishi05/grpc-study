@@ -314,6 +314,100 @@ func (x *PrimeNumberManyTimesResponse) GetResult() int64 {
 	return 0
 }
 
+type ComputeAverageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Num int32 `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+}
+
+func (x *ComputeAverageRequest) Reset() {
+	*x = ComputeAverageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sum_sumpb_sum_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ComputeAverageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ComputeAverageRequest) ProtoMessage() {}
+
+func (x *ComputeAverageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sum_sumpb_sum_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ComputeAverageRequest.ProtoReflect.Descriptor instead.
+func (*ComputeAverageRequest) Descriptor() ([]byte, []int) {
+	return file_sum_sumpb_sum_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ComputeAverageRequest) GetNum() int32 {
+	if x != nil {
+		return x.Num
+	}
+	return 0
+}
+
+type ComputeAverageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result float64 `protobuf:"fixed64,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *ComputeAverageResponse) Reset() {
+	*x = ComputeAverageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sum_sumpb_sum_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ComputeAverageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ComputeAverageResponse) ProtoMessage() {}
+
+func (x *ComputeAverageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sum_sumpb_sum_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ComputeAverageResponse.ProtoReflect.Descriptor instead.
+func (*ComputeAverageResponse) Descriptor() ([]byte, []int) {
+	return file_sum_sumpb_sum_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ComputeAverageResponse) GetResult() float64 {
+	if x != nil {
+		return x.Result
+	}
+	return 0
+}
+
 var File_sum_sumpb_sum_proto protoreflect.FileDescriptor
 
 var file_sum_sumpb_sum_proto_rawDesc = []byte{
@@ -338,19 +432,29 @@ var file_sum_sumpb_sum_proto_rawDesc = []byte{
 	0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x22, 0x36, 0x0a, 0x1c, 0x50, 0x72, 0x69, 0x6d, 0x65,
 	0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x4d, 0x61, 0x6e, 0x79, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x52,
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c,
-	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x32,
-	0x99, 0x01, 0x0a, 0x0a, 0x53, 0x75, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x2a,
-	0x0a, 0x03, 0x53, 0x75, 0x6d, 0x12, 0x0f, 0x2e, 0x73, 0x75, 0x6d, 0x2e, 0x53, 0x75, 0x6d, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x10, 0x2e, 0x73, 0x75, 0x6d, 0x2e, 0x53, 0x75, 0x6d,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x5f, 0x0a, 0x14, 0x50, 0x72,
-	0x69, 0x6d, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x4d, 0x61, 0x6e, 0x79, 0x54, 0x69, 0x6d,
-	0x65, 0x73, 0x12, 0x20, 0x2e, 0x73, 0x75, 0x6d, 0x2e, 0x50, 0x72, 0x69, 0x6d, 0x65, 0x4e, 0x75,
-	0x6d, 0x62, 0x65, 0x72, 0x4d, 0x61, 0x6e, 0x79, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x73, 0x75, 0x6d, 0x2e, 0x50, 0x72, 0x69, 0x6d, 0x65,
-	0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x4d, 0x61, 0x6e, 0x79, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x42, 0x0d, 0x5a, 0x0b, 0x2e,
-	0x2f, 0x73, 0x75, 0x6d, 0x2f, 0x73, 0x75, 0x6d, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22,
+	0x29, 0x0a, 0x15, 0x43, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6e, 0x75, 0x6d, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x03, 0x6e, 0x75, 0x6d, 0x22, 0x30, 0x0a, 0x16, 0x43, 0x6f,
+	0x6d, 0x70, 0x75, 0x74, 0x65, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x01, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0xe8, 0x01, 0x0a,
+	0x0a, 0x53, 0x75, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x2a, 0x0a, 0x03, 0x53,
+	0x75, 0x6d, 0x12, 0x0f, 0x2e, 0x73, 0x75, 0x6d, 0x2e, 0x53, 0x75, 0x6d, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x10, 0x2e, 0x73, 0x75, 0x6d, 0x2e, 0x53, 0x75, 0x6d, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x5f, 0x0a, 0x14, 0x50, 0x72, 0x69, 0x6d, 0x65,
+	0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x4d, 0x61, 0x6e, 0x79, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x12,
+	0x20, 0x2e, 0x73, 0x75, 0x6d, 0x2e, 0x50, 0x72, 0x69, 0x6d, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65,
+	0x72, 0x4d, 0x61, 0x6e, 0x79, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x21, 0x2e, 0x73, 0x75, 0x6d, 0x2e, 0x50, 0x72, 0x69, 0x6d, 0x65, 0x4e, 0x75, 0x6d,
+	0x62, 0x65, 0x72, 0x4d, 0x61, 0x6e, 0x79, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x4d, 0x0a, 0x0e, 0x43, 0x6f, 0x6d, 0x70,
+	0x75, 0x74, 0x65, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x12, 0x1a, 0x2e, 0x73, 0x75, 0x6d,
+	0x2e, 0x43, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x73, 0x75, 0x6d, 0x2e, 0x43, 0x6f, 0x6d,
+	0x70, 0x75, 0x74, 0x65, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x00, 0x28, 0x01, 0x42, 0x0d, 0x5a, 0x0b, 0x2e, 0x2f, 0x73, 0x75, 0x6d,
+	0x2f, 0x73, 0x75, 0x6d, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -365,7 +469,7 @@ func file_sum_sumpb_sum_proto_rawDescGZIP() []byte {
 	return file_sum_sumpb_sum_proto_rawDescData
 }
 
-var file_sum_sumpb_sum_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_sum_sumpb_sum_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_sum_sumpb_sum_proto_goTypes = []interface{}{
 	(*Sum)(nil),                          // 0: sum.Sum
 	(*PrimeNumber)(nil),                  // 1: sum.PrimeNumber
@@ -373,16 +477,20 @@ var file_sum_sumpb_sum_proto_goTypes = []interface{}{
 	(*SumResponse)(nil),                  // 3: sum.SumResponse
 	(*PrimeNumberManyTimesRequest)(nil),  // 4: sum.PrimeNumberManyTimesRequest
 	(*PrimeNumberManyTimesResponse)(nil), // 5: sum.PrimeNumberManyTimesResponse
+	(*ComputeAverageRequest)(nil),        // 6: sum.ComputeAverageRequest
+	(*ComputeAverageResponse)(nil),       // 7: sum.ComputeAverageResponse
 }
 var file_sum_sumpb_sum_proto_depIdxs = []int32{
 	0, // 0: sum.SumRequest.total:type_name -> sum.Sum
 	1, // 1: sum.PrimeNumberManyTimesRequest.prime_number:type_name -> sum.PrimeNumber
 	2, // 2: sum.SumService.Sum:input_type -> sum.SumRequest
 	4, // 3: sum.SumService.PrimeNumberManyTimes:input_type -> sum.PrimeNumberManyTimesRequest
-	3, // 4: sum.SumService.Sum:output_type -> sum.SumResponse
-	5, // 5: sum.SumService.PrimeNumberManyTimes:output_type -> sum.PrimeNumberManyTimesResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
+	6, // 4: sum.SumService.ComputeAverage:input_type -> sum.ComputeAverageRequest
+	3, // 5: sum.SumService.Sum:output_type -> sum.SumResponse
+	5, // 6: sum.SumService.PrimeNumberManyTimes:output_type -> sum.PrimeNumberManyTimesResponse
+	7, // 7: sum.SumService.ComputeAverage:output_type -> sum.ComputeAverageResponse
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -466,6 +574,30 @@ func file_sum_sumpb_sum_proto_init() {
 				return nil
 			}
 		}
+		file_sum_sumpb_sum_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ComputeAverageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sum_sumpb_sum_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ComputeAverageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -473,7 +605,7 @@ func file_sum_sumpb_sum_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_sum_sumpb_sum_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -501,7 +633,10 @@ const _ = grpc.SupportPackageIsVersion6
 type SumServiceClient interface {
 	// Unary
 	Sum(ctx context.Context, in *SumRequest, opts ...grpc.CallOption) (*SumResponse, error)
+	// Server Streaming
 	PrimeNumberManyTimes(ctx context.Context, in *PrimeNumberManyTimesRequest, opts ...grpc.CallOption) (SumService_PrimeNumberManyTimesClient, error)
+	// Client Streaming
+	ComputeAverage(ctx context.Context, opts ...grpc.CallOption) (SumService_ComputeAverageClient, error)
 }
 
 type sumServiceClient struct {
@@ -553,11 +688,48 @@ func (x *sumServicePrimeNumberManyTimesClient) Recv() (*PrimeNumberManyTimesResp
 	return m, nil
 }
 
+func (c *sumServiceClient) ComputeAverage(ctx context.Context, opts ...grpc.CallOption) (SumService_ComputeAverageClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_SumService_serviceDesc.Streams[1], "/sum.SumService/ComputeAverage", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &sumServiceComputeAverageClient{stream}
+	return x, nil
+}
+
+type SumService_ComputeAverageClient interface {
+	Send(*ComputeAverageRequest) error
+	CloseAndRecv() (*ComputeAverageResponse, error)
+	grpc.ClientStream
+}
+
+type sumServiceComputeAverageClient struct {
+	grpc.ClientStream
+}
+
+func (x *sumServiceComputeAverageClient) Send(m *ComputeAverageRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *sumServiceComputeAverageClient) CloseAndRecv() (*ComputeAverageResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(ComputeAverageResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // SumServiceServer is the server API for SumService service.
 type SumServiceServer interface {
 	// Unary
 	Sum(context.Context, *SumRequest) (*SumResponse, error)
+	// Server Streaming
 	PrimeNumberManyTimes(*PrimeNumberManyTimesRequest, SumService_PrimeNumberManyTimesServer) error
+	// Client Streaming
+	ComputeAverage(SumService_ComputeAverageServer) error
 }
 
 // UnimplementedSumServiceServer can be embedded to have forward compatible implementations.
@@ -569,6 +741,9 @@ func (*UnimplementedSumServiceServer) Sum(context.Context, *SumRequest) (*SumRes
 }
 func (*UnimplementedSumServiceServer) PrimeNumberManyTimes(*PrimeNumberManyTimesRequest, SumService_PrimeNumberManyTimesServer) error {
 	return status.Errorf(codes.Unimplemented, "method PrimeNumberManyTimes not implemented")
+}
+func (*UnimplementedSumServiceServer) ComputeAverage(SumService_ComputeAverageServer) error {
+	return status.Errorf(codes.Unimplemented, "method ComputeAverage not implemented")
 }
 
 func RegisterSumServiceServer(s *grpc.Server, srv SumServiceServer) {
@@ -614,6 +789,32 @@ func (x *sumServicePrimeNumberManyTimesServer) Send(m *PrimeNumberManyTimesRespo
 	return x.ServerStream.SendMsg(m)
 }
 
+func _SumService_ComputeAverage_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(SumServiceServer).ComputeAverage(&sumServiceComputeAverageServer{stream})
+}
+
+type SumService_ComputeAverageServer interface {
+	SendAndClose(*ComputeAverageResponse) error
+	Recv() (*ComputeAverageRequest, error)
+	grpc.ServerStream
+}
+
+type sumServiceComputeAverageServer struct {
+	grpc.ServerStream
+}
+
+func (x *sumServiceComputeAverageServer) SendAndClose(m *ComputeAverageResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *sumServiceComputeAverageServer) Recv() (*ComputeAverageRequest, error) {
+	m := new(ComputeAverageRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _SumService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "sum.SumService",
 	HandlerType: (*SumServiceServer)(nil),
@@ -628,6 +829,11 @@ var _SumService_serviceDesc = grpc.ServiceDesc{
 			StreamName:    "PrimeNumberManyTimes",
 			Handler:       _SumService_PrimeNumberManyTimes_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "ComputeAverage",
+			Handler:       _SumService_ComputeAverage_Handler,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "sum/sumpb/sum.proto",

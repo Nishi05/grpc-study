@@ -24,9 +24,17 @@ message PrimeNumberManyTimesResponse {
     int64 result = 1;
 }
 
+message ComputeAverageRequest{
+    int32 num = 1;
+}
+message ComputeAverageResponse {
+    double result = 1;
+}
 service SumService {
     // Unary
     rpc Sum(SumRequest) returns (SumResponse){};
-
+    // Server Streaming 
     rpc PrimeNumberManyTimes(PrimeNumberManyTimesRequest) returns (stream PrimeNumberManyTimesResponse){}
+    // Client Streaming
+    rpc ComputeAverage(stream ComputeAverageRequest) returns (ComputeAverageResponse){}
 }

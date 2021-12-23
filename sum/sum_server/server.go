@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"grpc-study/sum/sumpb"
+	"io"
 	"log"
 	"net"
 
@@ -41,6 +42,25 @@ func (*server) PrimeNumberManyTimes(req *sumpb.PrimeNumberManyTimesRequest, stre
 	}
 
 	return nil
+}
+
+func (*server) ComputeAverage(stream sumpb.SumService_ComputeAverageServer) error {
+	fmt.Printf("ComputeAverage function was invoked with a streaming request\n")
+	result := int32(0)
+	count := 0
+	for {
+		req, err := stream.Recv()
+
+		if err == io.EOF {
+			average := float64(result) / float64(count)
+			return stream.SendAndClose(&sumpb.ComputeAverageResponse{
+				Result: average,
+			})
+		}
+		result += req.GetNum()
+		count++
+	}
+
 }
 
 func main() {
