@@ -28,6 +28,7 @@ func main() {
 	// doBiDiStreaming(c)
 
 	doErrorUnary(c)
+
 }
 
 func doUnary(c sumpb.SumServiceClient) {
